@@ -1,7 +1,7 @@
 import random
 
-def take_turn(direc, board):
-    global score
+def take_turn(direc, board,score):
+    
     merged = [[False for _ in range(4)] for _ in range(4)]
     if direc == 'UP':
         for i in range(4):
@@ -73,7 +73,7 @@ def take_turn(direc, board):
                         score += board[i][4 - j + shift]
                         board[i][3 - j + shift] = 0
                         merged[i][4 - j + shift] = True
-    return board
+    return board,score
 
 def new_pieces(board): 
     count=0

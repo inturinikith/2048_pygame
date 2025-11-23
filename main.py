@@ -38,8 +38,8 @@ while running:
 
     # giving colour to the window
     screen.fill((200,195,170))
-    board()
-    pieces(board_values)
+    board(screen, font, score, high_score)
+    pieces(screen, board_values, font)
     if spawn_new or counter<2:
         board_values,full=new_pieces(board_values)
         counter+=1
@@ -47,12 +47,12 @@ while running:
     if full and no_moves_left(board_values):
          game_over=True
     if direction !=  '' :
-        board_values =take_turn(direction,board_values)
+        board_values,score =take_turn(direction,board_values,score)
         direction= ''
         spawn_new=True
 
     if game_over:
-        draw_over()
+        draw_over(screen, font)
         if high_score>high:
             file=open('data/high_score.txt','w')
             file.write(f'{high_score}')
